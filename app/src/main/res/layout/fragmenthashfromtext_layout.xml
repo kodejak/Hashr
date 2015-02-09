@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Hashr - generate an compare hashes like MD5 or SHA-1 on Android
+    Copyright (C) 2015  Christian Handorf - kodejak at gmail dot com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="SHA-256 from text"
+            android:id="@+id/tvHeader"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Input:"
+            android:id="@+id/textView"/>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:id="@+id/edInput"
+                android:textSize="15sp"
+                android:textIsSelectable="false"
+                android:padding="17dp"/>
+
+        </LinearLayout>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate SHA-256 Hash"
+            android:id="@+id/btnGenerate"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shiny_button"
+            android:textColor="@color/button_text"
+            android:onClick="OnButtonGenerateClick"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Output:"
+            android:id="@+id/textView2"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="false"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:id="@+id/edOutput"
+                android:editable = "false"
+                android:textSize="15sp"
+                android:padding="17dp"/>
+            <ImageButton
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                android:id="@+id/btnCopyTo"
+                android:src="@drawable/ic_copy"
+                android:background="@drawable/shiny_button"
+                android:onClick="OnButtonToClipboardClick"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Compare with:"
+            android:id="@+id/textView3"
+            android:layout_marginTop="10dp" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:id="@+id/edCompare"
+                android:textSize="15sp"
+                android:padding="17dp"
+                android:ellipsize="end"/>
+            <ImageButton
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="P"
+                android:id="@+id/btnPasteTo"
+                android:src="@drawable/ic_clipboard"
+                android:background="@drawable/shiny_button"
+                android:onClick="OnButtonFromClipboardClick"/>
+        </LinearLayout>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compare SHA-256 Hashes"
+            android:id="@+id/btnCompare"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shiny_button"
+            android:textColor="@color/button_text"
+            android:layout_marginTop="10dp"
+            android:onClick="OnButtonCompareClick"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="234dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text=""
+                android:id="@+id/tvCompare"
+                android:layout_gravity="bottom"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:textSize="32sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
