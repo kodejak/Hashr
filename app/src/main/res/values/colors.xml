@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="actionbar_color">#000</color>
+    <color name="actionbar_textcolor">#fff</color>
     <color name="button_color">#39b54a</color>
     <color name="button_text">#fff</color>
     <color name="app_color">#39b54a</color>
     <color name="section_color">#DDD</color>
+    <color name="color_primary">#000</color>
+    <color name="color_primary_dark">#000</color>
+    <color name="text_color">#000</color>
+
 </resources>

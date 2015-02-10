@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +38,7 @@ import de.kodejak.utils.fileWork;
  *   along with this program.  If not, see http://www.gnu.org/licenses
  */
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends android.support.v7.app.ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private static String TAG ="Hashr";
@@ -66,10 +67,14 @@ public class MainActivity extends ActionBarActivity
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
+        // Set a toolbar which will replace the action bar.
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+                (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
 
         Intent intent = getIntent();
         String action = intent.getAction();

@@ -1,16 +1,18 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="actionBarStyle">@style/ActionBar</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:buttonStyle">@style/button</item>
         <item name="android:activatedBackgroundIndicator">@drawable/list_activated_background</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:colorPrimary">@color/actionbar_color</item>
+        <item name="android:colorPrimaryDark">@color/actionbar_color</item>
+        <item name="colorAccent">@color/app_color</item>
+        <item name="android:textColorSecondary">@color/text_color</item>
     </style>
 
-    <!-- Action Bar Styles -->
-    <style name="ActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@color/actionbar_color</item>
-    </style>
     <style name="button" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textColor">#FFFFFFFF</item>

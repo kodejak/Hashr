@@ -39,20 +39,23 @@
         android:id="@+id/tvHeader"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/ivLogo"/>
+        android:layout_below="@id/ivLogo"
+        android:textColor="@color/text_color"/>
 
         <CheckBox
             android:id="@+id/checkPrefUppercase"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Generate uppercase hashs"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color"/>
         <CheckBox
             android:id="@+id/checkPrefTrim"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Trim text on white spaces while copy from clipboard"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color"/>
     </LinearLayout>
 
 </RelativeLayout>

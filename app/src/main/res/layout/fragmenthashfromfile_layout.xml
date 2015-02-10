@@ -36,14 +36,16 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Dummy from file"
             android:id="@+id/tvHeader"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/text_color"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Input:"
-            android:id="@+id/textView"/>
+            android:id="@+id/textView"
+            android:textColor="@color/text_color"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal"
@@ -59,7 +61,8 @@
                 android:id="@+id/edInput"
                 android:textSize="15sp"
                 android:textIsSelectable="false"
-                android:padding="17dp"/>
+                android:padding="17dp"
+                android:textColor="@color/text_color"/>
 
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
@@ -77,7 +80,8 @@
             android:layout_height="wrap_content"
             android:text="Save MD5 to .md5 file"
             android:id="@+id/checkToFile"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/text_color"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -96,7 +100,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Output:"
             android:id="@+id/textView2"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal"
@@ -112,7 +117,8 @@
                 android:id="@+id/edOutput"
                 android:editable = "false"
                 android:textSize="15sp"
-                android:padding="17dp"/>
+                android:padding="17dp"
+                android:textColor="@color/text_color"/>
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -130,7 +136,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Compare with:"
             android:id="@+id/textView3"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color"/>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -144,7 +151,8 @@
                 android:id="@+id/edCompare"
                 android:textSize="15sp"
                 android:padding="17dp"
-                android:ellipsize="end"/>
+                android:ellipsize="end"
+                android:textColor="@color/text_color"/>
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -191,7 +199,8 @@
                 android:layout_gravity="bottom"
                 android:textStyle="bold|italic"
                 android:gravity="center"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:textColor="@color/text_color"/>
         </LinearLayout>
 
     </LinearLayout>
