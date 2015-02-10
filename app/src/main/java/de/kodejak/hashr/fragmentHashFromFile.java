@@ -83,7 +83,7 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
 
         switch (this.fragJob) {
             case 1:
-                fragTitle = "MD5 f rom file";
+                fragTitle = "MD5 from file";
                 fragJobStr = "MD5";
                 fragJobExt = ".md5";
                 break;
@@ -100,6 +100,10 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
 
         }
 
+        lastFile = this.getArguments().getString("sumfile");
+
+        Log.d(TAG, fragTitle + " / " + fragJobStr + " / " + lastFile);
+
         SharedPreferences mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         uppercaseHash = mySharedPreferences.getBoolean("uppercase_hash", false);
         trimHash = mySharedPreferences.getBoolean("trim_hash", false);
@@ -111,7 +115,7 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
         Button btnComp = (Button) rootView.findViewById(R.id.btnCompare);
         btnComp.setText("Compare " + fragJobStr + " hashes");
         CheckBox checkToFile = (CheckBox) rootView.findViewById(R.id.checkToFile);
-        checkToFile.setText("Save " + fragJobStr + " to ." + fragJobExt + " file");
+        checkToFile.setText("Save " + fragJobStr + " to " + fragJobExt + " file");
 
         sdk = android.os.Build.VERSION.SDK_INT;
 
@@ -136,6 +140,15 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (lastFile != null) {
+            getHashFromFile(lastFile);
+        }
     }
 
     public void OnButtonGenerateClick() {
@@ -300,6 +313,14 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
         }
     }
 
+    private String getFirstWord(String text) {
+        if (text.indexOf(' ') > -1) {
+            return text.substring(0, text.indexOf(' '));
+        } else {
+            return text;
+        }
+    }
+
     private void getHashFromFile(String fileName) {
         String firstLine = null;
         String hash[] = null;
@@ -313,10 +334,8 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
             return;
         }
 
-        hash = firstLine.split(" ");
-
         TextView edComp = (TextView) getView().findViewById(R.id.edCompare);
-        edComp.setText(hash[0].trim());
+        edComp.setText(getFirstWord(firstLine));
     }
 
 

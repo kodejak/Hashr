@@ -1,7 +1,11 @@
 package de.kodejak.hashr;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -9,10 +13,11 @@ import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+
+import de.kodejak.utils.fileWork;
 
 /**
  *   Hashr - generate and compare hashes like MD5 or SHA-1 on Android.
@@ -36,15 +41,21 @@ public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private static String TAG ="Hashr";
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
+
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private android.app.Fragment nativeFragment;
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
+
     private CharSequence mTitle;
+
+    private String lastSumFile = null;
+    private int forcedFragmentNum = -1;
+
+    private static final int FRAG_TEXT_MD5 = 1;
+    private static final int FRAG_TEXT_SHA1 = 2;
+    private static final int FRAG_TEXT_SHA256 = 3;
+    private static final int FRAG_FILE_MD5 = 5;
+    private static final int FRAG_FILE_SHA1 = 6;
+    private static final int FRAG_FILE_SHA256 = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +70,43 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+
+        if (action.compareTo(Intent.ACTION_VIEW) == 0) {
+            String scheme = intent.getScheme();
+            ContentResolver resolver = getContentResolver();
+
+            if (scheme.compareTo(ContentResolver.SCHEME_CONTENT) == 0) {
+                Uri uri = intent.getData();
+                String name = getContentName(resolver, uri);
+
+                Log.v("tag" , "Content intent detected: " + action + " : " + intent.getDataString() + " : " + intent.getType() + " : " + name);
+                //What TODO?
+            }
+            else if (scheme.compareTo(ContentResolver.SCHEME_FILE) == 0) {
+                Uri uri = intent.getData();
+
+                lastSumFile = intent.getData().getPath();
+                forcedFragmentNum = prepareOpenSumFile(lastSumFile);
+
+                if (forcedFragmentNum > -1) {
+                    mNavigationDrawerFragment.selectItem(forcedFragmentNum);
+                }
+            }
+        }
+    }
+
+    public static String getContentName(ContentResolver resolver, Uri uri){
+        Cursor cursor = resolver.query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
+        if (nameIndex >= 0) {
+            return cursor.getString(nameIndex);
+        } else {
+            return null;
+        }
     }
 
     private Fragment createFromTextFragmentInstance(int job) {
@@ -69,65 +117,73 @@ public class MainActivity extends ActionBarActivity
 
         return newFragment;
     }
-    private Fragment createFromFileFragmentInstance(int job) {
+    private Fragment createFromFileFragmentInstance(int job, String sumFile) {
         Fragment newFragment = new fragmentHashFromFile();
         Bundle args = new Bundle();
         args.putInt("job", job);
+        args.putString("sumfile", sumFile);
         newFragment.setArguments(args);
 
         return newFragment;
     }
 
+    private int prepareOpenSumFile(String fileName) {
+        int fragNum = -1;
+        fileWork fw = new fileWork();
+
+        String fileExt = fw.getFileExtension(fileName);
+
+        if (fileExt.equalsIgnoreCase("md5")) {
+            fragNum = FRAG_FILE_MD5;
+        } else
+            if (fileExt.equalsIgnoreCase("sha1")) {
+                fragNum = FRAG_FILE_SHA1;
+            } else
+                if (fileExt.equalsIgnoreCase("sha256")) {
+                    fragNum = FRAG_FILE_SHA256;
+                }
+        return fragNum;
+    }
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-
-        Log.d(TAG, "" + position);
         Fragment objFragment = null;
-        boolean useNativeFragment = false;
 
         String fragmentTag = "";
-
-        final String[] sections = getResources().getStringArray(R.array.sections);
-        if (sections[position].charAt(0) == '#') {
-            return;
-        }
 
         String[] stringArray = getResources().getStringArray(R.array.sections);
         if (position >= 0) {
             fragmentTag = stringArray[position];
         }
 
-
-
         switch (position) {
             case 0:
-            case 1:
-                objFragment = createFromTextFragmentInstance(1); // MD5
+            case FRAG_TEXT_MD5:
+                objFragment = createFromTextFragmentInstance(1);
                 fragmentTag = getString(R.string.title_section1);
                 break;
-            case 2:
-                objFragment = createFromTextFragmentInstance(2); // SHA-1
+            case FRAG_TEXT_SHA1:
+                objFragment = createFromTextFragmentInstance(2);
                 fragmentTag = getString(R.string.title_section1);
                 break;
-            case 3:
-                objFragment = createFromTextFragmentInstance(3); // SHA-256
+            case FRAG_TEXT_SHA256:
+                objFragment = createFromTextFragmentInstance(3);
                 fragmentTag = getString(R.string.title_section1);
                 break;
-            case 5:
-                objFragment = createFromFileFragmentInstance(1); // MD5
+            case FRAG_FILE_MD5:
+                objFragment = createFromFileFragmentInstance(1, lastSumFile);
                 fragmentTag = getString(R.string.title_section2);
                 break;
-            case 6:
-                objFragment = createFromFileFragmentInstance(2); // SHA-1
+            case FRAG_FILE_SHA1:
+                objFragment = createFromFileFragmentInstance(2, lastSumFile);
                 fragmentTag = getString(R.string.title_section2);
                 break;
-            case 7:
-                objFragment = createFromFileFragmentInstance(3); // SHA-256
+            case FRAG_FILE_SHA256:
+                objFragment = createFromFileFragmentInstance(3, lastSumFile);
                 fragmentTag = getString(R.string.title_section2);
                 break;
             case 9:
                 objFragment = new fragmentPreference();
-                //useNativeFragment = true;
                 break;
             case 10:
                 objFragment = new fragmentAbout();
@@ -138,23 +194,9 @@ public class MainActivity extends ActionBarActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, objFragment, fragmentTag)
                 .commit();
-        /*
-        if (useNativeFragment) {
-            android.app.FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, nativeFragment).commit();
-        } else {
-            if (nativeFragment != null) {
-                getFragmentManager().beginTransaction().remove(nativeFragment)
-                        .commit();
-                nativeFragment = null;
-            }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, objFragment, fragmentTag)
-                    .commit();
-        }
-        */
+
+        // we have done this
+        lastSumFile = null;
     }
 
     public void onSectionAttached(int number) {
@@ -171,39 +213,6 @@ public class MainActivity extends ActionBarActivity
         actionBar.setTitle(mTitle);
     }
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
-    */
-
-    
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-            onNavigationDrawerItemSelected(4);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    */
 
     /**
      * A placeholder fragment containing a simple view.
@@ -224,6 +233,7 @@ public class MainActivity extends ActionBarActivity
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+            Log.d(TAG, "Activity PlaceholderFragment()");
             return fragment;
         }
 
@@ -246,6 +256,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    // TODO: avoid this stupid wrappers
     public void OnButtonGenerateClick(View v) {
         fragmentHashFromText fText = null;
         fText = (fragmentHashFromText) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section1));

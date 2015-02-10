@@ -44,7 +44,7 @@ import android.widget.Toast;
 
 public class NavigationDrawerFragment extends Fragment {
 
-    private static String TAG ="Hashr";
+    private static String TAG = "Hashr";
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
     private NavigationDrawerCallbacks mCallbacks;
@@ -120,11 +120,6 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         mDrawerListView.setAdapter(mAdapter);
-
-        final String[] sectionsNew = getResources().getStringArray(R.array.sections);
-        if (sectionsNew[mCurrentSelectedPosition].charAt(0) == '#') {
-            return linearLayout;
-        }
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
         return linearLayout; //mDrawerListView;
@@ -213,7 +208,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void selectItem(int position) {
+    public void selectItem(int position) {
         mCurrentSelectedPosition = position;
 
         if (mDrawerListView != null) {
