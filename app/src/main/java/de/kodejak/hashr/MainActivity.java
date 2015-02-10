@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+//import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
@@ -86,8 +86,6 @@ public class MainActivity extends ActionBarActivity
                 //What TODO?
             }
             else if (scheme.compareTo(ContentResolver.SCHEME_FILE) == 0) {
-                Uri uri = intent.getData();
-
                 lastSumFile = intent.getData().getPath();
                 forcedFragmentNum = prepareOpenSumFile(lastSumFile);
 
@@ -206,12 +204,14 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    /*
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
+    */
 
 
     /**
@@ -233,7 +233,6 @@ public class MainActivity extends ActionBarActivity
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
-            Log.d(TAG, "Activity PlaceholderFragment()");
             return fragment;
         }
 
@@ -258,7 +257,7 @@ public class MainActivity extends ActionBarActivity
 
     // TODO: avoid this stupid wrappers
     public void OnButtonGenerateClick(View v) {
-        fragmentHashFromText fText = null;
+        fragmentHashFromText fText;
         fText = (fragmentHashFromText) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section1));
         if (fText != null) {
             if (fText.isVisible()) {
@@ -266,7 +265,7 @@ public class MainActivity extends ActionBarActivity
                 return;
             }
         }
-        fragmentHashFromFile fFile = null;
+        fragmentHashFromFile fFile;
         fFile = (fragmentHashFromFile) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section2));
         if (fFile != null) {
             if (fFile.isVisible()) {
@@ -276,7 +275,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
     public void OnButtonCompareClick(View v) {
-        fragmentHashFromText fText = null;
+        fragmentHashFromText fText;
         fText = (fragmentHashFromText) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section1));
         if (fText != null) {
             if (fText.isVisible()) {
@@ -284,7 +283,7 @@ public class MainActivity extends ActionBarActivity
                 return;
             }
         }
-        fragmentHashFromFile fFile = null;
+        fragmentHashFromFile fFile;
         fFile = (fragmentHashFromFile) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section2));
         if (fFile != null) {
             if (fFile.isVisible()) {
@@ -294,7 +293,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
     public void OnButtonToClipboardClick(View v) {
-        fragmentHashFromText fText = null;
+        fragmentHashFromText fText;
         fText = (fragmentHashFromText) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section1));
         if (fText != null) {
             if (fText.isVisible()) {
@@ -302,7 +301,7 @@ public class MainActivity extends ActionBarActivity
                 return;
             }
         }
-        fragmentHashFromFile fFile = null;
+        fragmentHashFromFile fFile;
         fFile = (fragmentHashFromFile) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section2));
         if (fFile != null) {
             if (fFile.isVisible()) {
@@ -312,7 +311,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
     public void OnButtonFromClipboardClick(View v) {
-        fragmentHashFromText fText = null;
+        fragmentHashFromText fText;
         fText = (fragmentHashFromText) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section1));
         if (fText != null) {
             if (fText.isVisible()) {
@@ -320,7 +319,7 @@ public class MainActivity extends ActionBarActivity
                 return;
             }
         }
-        fragmentHashFromFile fFile = null;
+        fragmentHashFromFile fFile;
         fFile = (fragmentHashFromFile) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section2));
         if (fFile != null) {
             if (fFile.isVisible()) {
@@ -331,7 +330,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void OnButtonChooseFileClick(View v) {
-        fragmentHashFromFile fFile = null;
+        fragmentHashFromFile fFile;
         fFile = (fragmentHashFromFile) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section2));
         if (fFile != null) {
             if (fFile.isVisible()) {
@@ -342,7 +341,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void OnButtonGetHashFromFileClick(View v) {
-        fragmentHashFromFile fFile = null;
+        fragmentHashFromFile fFile;
         fFile = (fragmentHashFromFile) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section2));
         if (fFile != null) {
             if (fFile.isVisible()) {
@@ -356,7 +355,7 @@ public class MainActivity extends ActionBarActivity
     {
         if (resultCode == Activity.RESULT_OK)
         {
-            fragmentHashFromFile fFile = null;
+            fragmentHashFromFile fFile;
             fFile = (fragmentHashFromFile) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_section2));
             if (fFile != null) {
                 if (fFile.isVisible()) {

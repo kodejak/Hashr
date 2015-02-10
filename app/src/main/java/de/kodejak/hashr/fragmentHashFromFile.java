@@ -51,10 +51,6 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
     Context mContext;
 
     private static final String TAG = "Hashr";
-    private Button genButton = null;
-    private Button compButton = null;
-    private ImageButton copyToButton = null;
-    private ImageButton pasteFromButton = null;
     private hashgen hashGen = new hashgen();
     private EditText inputEdit = null;
     private EditText compareEdit = null;

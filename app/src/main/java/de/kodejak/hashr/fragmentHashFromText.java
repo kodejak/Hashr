@@ -42,11 +42,7 @@ public class fragmentHashFromText extends android.support.v4.app.Fragment {
     View rootView;
     Context mContext;
 
-    private static final String TAG = "Hashr";
-    private Button genButton = null;
-    private Button compButton = null;
-    private ImageButton copyToButton = null;
-    private ImageButton pasteFromButton = null;
+    //private static final String TAG = "Hashr";
     private hashgen hashGen = new hashgen();
     private EditText inputEdit = null;
     private EditText compareEdit = null;

@@ -41,7 +41,7 @@ public class fragmentPreference extends android.support.v4.app.Fragment {
     CheckBox checkUpper = null;
     CheckBox checkTrim = null;
 
-    private static final String TAG = "Hashr";
+    //private static final String TAG = "Hashr";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -22,7 +22,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 /**
  *   Hashr - generate and compare hashes like MD5 or SHA-1 on Android.
@@ -44,7 +43,7 @@ import android.widget.Toast;
 
 public class NavigationDrawerFragment extends Fragment {
 
-    private static String TAG = "Hashr";
+    //private static String TAG = "Hashr";
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
     private NavigationDrawerCallbacks mCallbacks;
@@ -107,7 +106,6 @@ public class NavigationDrawerFragment extends Fragment {
 
         mAdapter = new mListAdapter(getActivity());
 
-        final TypedArray typedArray = getResources().obtainTypedArray(R.array.sections_icons);
         final String[] sections = getResources().getStringArray(R.array.sections);
 
 
