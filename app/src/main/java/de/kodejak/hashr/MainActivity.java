@@ -54,9 +54,13 @@ public class MainActivity extends android.support.v7.app.ActionBarActivity
     private static final int FRAG_TEXT_MD5 = 1;
     private static final int FRAG_TEXT_SHA1 = 2;
     private static final int FRAG_TEXT_SHA256 = 3;
-    private static final int FRAG_FILE_MD5 = 5;
-    private static final int FRAG_FILE_SHA1 = 6;
-    private static final int FRAG_FILE_SHA256 = 7;
+    private static final int FRAG_TEXT_CRC32 = 4;
+    private static final int FRAG_FILE_MD5 = 6;
+    private static final int FRAG_FILE_SHA1 = 7;
+    private static final int FRAG_FILE_SHA256 = 8;
+    private static final int FRAG_FILE_CRC32 = 9;
+    private static final int FRAG_PREF = 11;
+    private static final int FRAG_ABOUT = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +148,9 @@ public class MainActivity extends android.support.v7.app.ActionBarActivity
             } else
                 if (fileExt.equalsIgnoreCase("sha256")) {
                     fragNum = FRAG_FILE_SHA256;
+                } else
+                if (fileExt.equalsIgnoreCase("crc32")) {
+                    fragNum = FRAG_FILE_CRC32;
                 }
         return fragNum;
     }
@@ -173,6 +180,10 @@ public class MainActivity extends android.support.v7.app.ActionBarActivity
                 objFragment = createFromTextFragmentInstance(3);
                 fragmentTag = getString(R.string.title_section1);
                 break;
+            case FRAG_TEXT_CRC32:
+                objFragment = createFromTextFragmentInstance(4);
+                fragmentTag = getString(R.string.title_section1);
+                break;
             case FRAG_FILE_MD5:
                 objFragment = createFromFileFragmentInstance(1, lastSumFile);
                 fragmentTag = getString(R.string.title_section2);
@@ -185,10 +196,14 @@ public class MainActivity extends android.support.v7.app.ActionBarActivity
                 objFragment = createFromFileFragmentInstance(3, lastSumFile);
                 fragmentTag = getString(R.string.title_section2);
                 break;
-            case 9:
+            case FRAG_FILE_CRC32:
+                objFragment = createFromFileFragmentInstance(4, lastSumFile);
+                fragmentTag = getString(R.string.title_section2);
+                break;
+            case FRAG_PREF:
                 objFragment = new fragmentPreference();
                 break;
-            case 10:
+            case FRAG_ABOUT:
                 objFragment = new fragmentAbout();
                 break;
         }

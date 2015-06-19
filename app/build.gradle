@@ -7,8 +7,8 @@ android {
         applicationId 'de.kodejak.hashr'
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 12
-        versionName '1.2'
+        versionCode 13
+        versionName '1.3'
     }
     buildTypes {
         release {

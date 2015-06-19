@@ -93,7 +93,11 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
                 fragJobStr = "SHA-256";
                 fragJobExt = ".sha256";
                 break;
-
+            case 4:
+                fragTitle = "CRC32 from file";
+                fragJobStr = "CRC32";
+                fragJobExt = ".crc32";
+                break;
         }
 
         lastFile = this.getArguments().getString("sumfile");
@@ -152,7 +156,7 @@ public class fragmentHashFromFile extends android.support.v4.app.Fragment {
         EditText txtInput = (EditText) getView().findViewById(R.id.edInput);
         String strInput = txtInput.getText().toString();
         String hashTextToFile;
-        File file = null;
+        File file;
 
         if (strInput.length() < 1) {
             return;

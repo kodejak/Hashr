@@ -20,10 +20,12 @@
         <item>MD5</item>
         <item>SHA-1</item>
         <item>SHA-256</item>
+        <item>CRC32</item>
         <item>#From file</item>
         <item>MD5</item>
         <item>SHA-1</item>
         <item>SHA-256</item>
+        <item>CRC32</item>
         <item>#General</item>
         <item>Preferences</item>
         <item>About</item>
@@ -33,7 +35,9 @@
         <item>ic_action</item>
         <item>ic_action</item>
         <item>ic_action</item>
+        <item>ic_action</item>
         <item>#</item>
+        <item>ic_action2</item>
         <item>ic_action2</item>
         <item>ic_action2</item>
         <item>ic_action2</item>

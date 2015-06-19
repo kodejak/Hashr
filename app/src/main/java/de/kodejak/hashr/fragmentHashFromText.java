@@ -76,7 +76,10 @@ public class fragmentHashFromText extends android.support.v4.app.Fragment {
                 fragTitle = "SHA-256 from text";
                 fragJobStr = "SHA-256";
                 break;
-
+            case 4:
+                fragTitle = "CRC32 from text";
+                fragJobStr = "CRC32";
+                break;
         }
 
         SharedPreferences mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
