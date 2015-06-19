@@ -6,6 +6,7 @@ Following checksums are supportet:
 * MD5
 * SHA-1
 * SHA-256
+* CRC32
 
 Currently a file manager must be present at the device to choose files for generating checksums.
 
