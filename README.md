@@ -1,4 +1,4 @@
-# Hashr
+# Hashr (Project closed)
 Android app to generate and compare md5 or other checksums.
 
 This app can generate checksums from texts or files, compare it to other checksums and show if they match or not.
@@ -25,3 +25,6 @@ Copyright (c) 2015 by kodejak
   <img alt="Get it on F-Droid"
        src="https://cloud.githubusercontent.com/assets/12447257/8024903/ce8dca32-0d44-11e5-95b0-e97d1d027351.png" />
 </a>
+
+#Disclaimer
+Due to massive Android fragmentation and permanently massive SDK changes, the project was closed. I'm not here to support and rebuild a FOSS software every few months if Google is changing the SDKs. I think it depends on a less secure and every time changing security model of Android. There is no concept at all. It feels like I'm a beta tester. I'm done with it. 
