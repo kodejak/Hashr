@@ -1,3 +1,4 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 # Hashr (Project closed)
 Android app to generate and compare md5 or other checksums.
 
@@ -13,7 +14,7 @@ Currently a file manager must be present at the device to choose files for gener
 License:
 This app is licensed under GPLv3 or later.
 
-Copyright (c) 2015 by kodejak
+Copyright (c) 2018 by kodejak
 
 
 
