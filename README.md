@@ -23,7 +23,7 @@ Copyright (c) 2018 by kodejak
         height="80"
         src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
 </a>  
-<a href="https://f-droid.org/repository/browse/?fdid=de.kodejak.hashr&fdpage=20">
+<a href="https://f-droid.org/packages/de.kodejak.hashr/">
     <img alt="Get it on F-Droid"
         height="80"
         src="https://f-droid.org/badge/get-it-on.png" />
